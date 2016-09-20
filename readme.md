@@ -18,24 +18,65 @@
 	
 ### Usage:
 
-#### You can set the API base url from api config file and make a request with request path only
+#### Requests with request uri:
 
-    GET Request     :  API::get("get", $config)
-    POST Request    :  API::post("post", $config)
-    PUT Request     :  API::put("put", $config)
-    DELETE Request  :  API::delete("delete", $config)
+    // $config is optional
+    GET Request     :  API::get("users/show", $config)
+    POST Request    :  API::post("users/create", $config)
+    PUT Request     :  API::put("users/update", $config)
+    DELETE Request  :  API::delete("users/delete", $config)
 
-#### Or make a request with full url
+#### Or using full url:
 
+    // $config is optional
     GET Request     :  API::get("http://httpbin.org/get", $config)
     POST Request    :  API::post("http://httpbin.org/post", $config)
     PUT Request     :  API::put("http://httpbin.org/put", $config)
     DELETE Request  :  API::delete("http://httpbin.org/delete", $config)
 
-For more guzzle request options
+#### Getting body content array:
 
-Browse Guzzle docs : [Guzzle Docs](http://docs.guzzlephp.org/en/latest/request-options.html#allow-redirects)
+    API::get("get", $config)->toArray()
+
+#### Getting status code:
+
+    API::get("get", $config)->getStatusCode()   // int 200
+
+    
+#### Multiple drivers:
+
+In api.php config file, repeat `default` array block
+     
+     return [
+     
+         // Called using API::driver("default")->get($uri) or API::get($uri) directly
+         "default" => [
+            'base_uri' => 'http://site1.dev/api/',
+            ....
+            ...
+            .
+         ],
+         
+         // Called using API::driver("another")->get($uri)
+         "another" => [
+            'base_uri' => 'http://site2.dev/api/',
+            ....
+            ...
+            .
+          ]
+     ];
+     
+     
+#### Native guzzle calling:
+
+
+    //API::guzzle() return guzzle client object
+    API::guzzle()->get("get", $config)->getBody()->getContents();
+    
+   For more guzzle request options
+   
+   Browse Guzzle docs : [Guzzle Docs](http://docs.guzzlephp.org/en/latest/request-options.html#allow-redirects)
 
 `Good luck`
- 
+
 `Dont forget to send a feedback..`
