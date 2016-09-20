@@ -9,6 +9,13 @@
             "email": "basemkhirat@gmail.com"
         }
     ],
+
+    "autoload": {
+        "psr-4" : {
+            "Basemkhirat\\API\\": "src/"
+        }
+    },
+
     "require": {
         "guzzlehttp/guzzle": "^6.2",
         "symfony/psr-http-message-bridge": "^1.0"
