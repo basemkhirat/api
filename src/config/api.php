@@ -8,7 +8,7 @@ return [
          * Base URL of Rest service
          */
 
-        'base_uri' => 'http://localhost',
+        'base_uri' => 'http://localhost/api/',
 
         /**
          * Float describing the timeout of the request in seconds.
@@ -33,7 +33,7 @@ return [
          * Set to false to disable throwing exceptions on an HTTP protocol errors
          */
 
-        "http_errors" => true,
+        "http_errors" => false,
 
         /**
          * Specify whether or not Content-Encoding responses (gzip, deflate, etc.) are automatically decoded.
@@ -69,7 +69,7 @@ return [
 
 
     /*
-     * For more request options
+     * For more guzzle request options
      * Browse Guzzle docs : http://docs.guzzlephp.org/en/latest/request-options.html
      *
      */

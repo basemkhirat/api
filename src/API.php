@@ -42,6 +42,7 @@ class API
      */
     function driver($driver = "default")
     {
+        $this->driver = $driver;
         $this->client = new Client(Config::get("api.$driver", []));
         return $this;
     }
@@ -112,7 +113,16 @@ class API
      */
     public function toArray()
     {
-        return json_decode($this->response->getBody()->getContents());
+
+        $accept = config("api.$this->driver.headers.Accept", "application/json");
+        $contents = $this->response->getBody()->getContents();
+
+        if ($accept == "application/xml") {
+            return simplexml_load_string($contents);
+        } else {
+            return json_decode($contents);
+        }
+
     }
 
     /**
