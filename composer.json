@@ -1,6 +1,7 @@
 {
     "name": "basemkhirat/api",
-    "description": "Making API calls from laravel application",
+    "description": "Making API calls from laravel applications",
+    "license": "MIT",
     "type": "package",
     "authors": [
         {
